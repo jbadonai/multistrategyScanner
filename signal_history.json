@@ -1,0 +1,493 @@
+{
+  "signals": {
+    "SR_CHANNEL_API3USDT_LONG": {
+      "price": 0.2767,
+      "time": "2026-03-08T21:39:27.531210"
+    },
+    "SR_CHANNEL_ONDOUSDT_LONG": {
+      "price": 0.2477,
+      "time": "2026-03-09T04:41:39.327236"
+    },
+    "SR_CHANNEL_AWEUSDT_LONG": {
+      "price": 0.05026,
+      "time": "2026-03-08T13:41:21.675172"
+    },
+    "SR_CHANNEL_HFTUSDT_SHORT": {
+      "price": 0.0153,
+      "time": "2026-03-08T15:25:35.764840"
+    },
+    "SR_CHANNEL_2ZUSDT_SHORT": {
+      "price": 0.07422,
+      "time": "2026-03-08T13:49:37.951847"
+    },
+    "SR_CHANNEL_DOLOUSDT_LONG": {
+      "price": 0.0325,
+      "time": "2026-03-08T14:40:03.220128"
+    },
+    "CRT_COTIUSDT_SHORT": {
+      "price": 0.01178,
+      "time": "2026-03-08T17:01:51.524183"
+    },
+    "CRT_LDOUSDT_SHORT": {
+      "price": 0.285,
+      "time": "2026-03-09T09:02:56.903986"
+    },
+    "CRT_NMRUSDT_LONG": {
+      "price": 7.77,
+      "time": "2026-03-08T17:01:51.525734"
+    },
+    "CRT_ALPINEUSDT_SHORT": {
+      "price": 0.419,
+      "time": "2026-03-09T09:02:57.005058"
+    },
+    "SR_CHANNEL_CTSIUSDT_LONG": {
+      "price": 0.02376,
+      "time": "2026-03-08T21:00:46.406928"
+    },
+    "SR_CHANNEL_LAUSDT_SHORT": {
+      "price": 0.2194,
+      "time": "2026-03-08T17:07:55.602998"
+    },
+    "SR_CHANNEL_SOLUSDT_LONG": {
+      "price": 82.59,
+      "time": "2026-03-08T20:55:17.587491"
+    },
+    "SR_CHANNEL_ICPUSDT_LONG": {
+      "price": 2.436,
+      "time": "2026-03-08T17:07:55.604791"
+    },
+    "SR_CHANNEL_AUSDT_LONG": {
+      "price": 0.0768,
+      "time": "2026-03-08T17:07:55.605299"
+    },
+    "SR_CHANNEL_LPTUSDT_LONG": {
+      "price": 2.209,
+      "time": "2026-03-08T17:15:11.099699"
+    },
+    "SR_CHANNEL_LRCUSDT_LONG": {
+      "price": 0.03058,
+      "time": "2026-03-08T17:19:35.204108"
+    },
+    "SR_CHANNEL_MMTUSDT_SHORT": {
+      "price": 0.1176,
+      "time": "2026-03-08T17:19:35.206121"
+    },
+    "SR_CHANNEL_RENDERUSDT_LONG": {
+      "price": 1.353,
+      "time": "2026-03-08T17:22:46.870305"
+    },
+    "SR_CHANNEL_POWRUSDT_LONG": {
+      "price": 0.0619,
+      "time": "2026-03-08T17:52:16.380800"
+    },
+    "SR_CHANNEL_MAVUSDT_LONG": {
+      "price": 0.01345,
+      "time": "2026-03-08T18:04:21.227152"
+    },
+    "SR_CHANNEL_LISTAUSDT_LONG": {
+      "price": 0.0821,
+      "time": "2026-03-08T18:08:32.890166"
+    },
+    "SR_CHANNEL_ETCUSDT_LONG": {
+      "price": 8.03,
+      "time": "2026-03-08T18:08:32.891359"
+    },
+    "SR_CHANNEL_DIAUSDT_LONG": {
+      "price": 0.1773,
+      "time": "2026-03-08T18:33:33.467981"
+    },
+    "SR_CHANNEL_CFXUSDT_LONG": {
+      "price": 0.04713,
+      "time": "2026-03-08T18:39:19.021694"
+    },
+    "SR_CHANNEL_CUSDT_LONG": {
+      "price": 0.0472,
+      "time": "2026-03-08T20:19:25.848622"
+    },
+    "SR_CHANNEL_LTCUSDT_LONG": {
+      "price": 52.98,
+      "time": "2026-03-08T20:19:25.849719"
+    },
+    "SR_CHANNEL_BNTUSDT_LONG": {
+      "price": 0.2783,
+      "time": "2026-03-08T20:22:24.284923"
+    },
+    "SR_CHANNEL_BREVUSDT_LONG": {
+      "price": 0.14,
+      "time": "2026-03-08T20:55:17.586007"
+    },
+    "CRT_SFPUSDT_LONG": {
+      "price": 0.2568,
+      "time": "2026-03-08T21:00:46.405986"
+    },
+    "CRT_SAHARAUSDT_LONG": {
+      "price": 0.02157,
+      "time": "2026-03-08T21:12:24.806954"
+    },
+    "CRT_FORMUSDT_LONG": {
+      "price": 0.2635,
+      "time": "2026-03-08T21:12:24.808623"
+    },
+    "CRT_PLUMEUSDT_SHORT": {
+      "price": 0.01399,
+      "time": "2026-03-08T21:12:24.809899"
+    },
+    "CRT_FLOWUSDT_LONG": {
+      "price": 0.0407,
+      "time": "2026-03-08T21:12:24.811277"
+    },
+    "CRT_BANANAUSDT_LONG": {
+      "price": 4.65,
+      "time": "2026-03-08T21:12:24.812533"
+    },
+    "CRT_BREVUSDT_LONG": {
+      "price": 0.1397,
+      "time": "2026-03-08T21:12:24.813554"
+    },
+    "CRT_HOLOUSDT_LONG": {
+      "price": 0.0589,
+      "time": "2026-03-08T21:12:24.814419"
+    },
+    "CRT_RDNTUSDT_LONG": {
+      "price": 0.00523,
+      "time": "2026-03-09T13:03:43.582225"
+    },
+    "CRT_CVXUSDT_SHORT": {
+      "price": 2.327,
+      "time": "2026-03-08T21:12:24.815880"
+    },
+    "CRT_ALTUSDT_SHORT": {
+      "price": 0.00724,
+      "time": "2026-03-08T21:12:24.816562"
+    },
+    "CRT_OXTUSDT_LONG": {
+      "price": 0.0156,
+      "time": "2026-03-08T21:12:24.817377"
+    },
+    "CRT_COTIUSDT_LONG": {
+      "price": 0.01177,
+      "time": "2026-03-08T21:12:24.818077"
+    },
+    "SR_CHANNEL_JUPUSDT_SHORT": {
+      "price": 0.1667,
+      "time": "2026-03-08T21:12:24.818779"
+    },
+    "SR_CHANNEL_DUSKUSDT_LONG": {
+      "price": 0.0851,
+      "time": "2026-03-08T21:12:24.819911"
+    },
+    "SR_CHANNEL_HEIUSDT_LONG": {
+      "price": 0.0762,
+      "time": "2026-03-09T04:54:17.438894"
+    },
+    "CRT_KITEUSDT_LONG": {
+      "price": 0.2866,
+      "time": "2026-03-09T05:01:56.574747"
+    },
+    "CRT_PLUMEUSDT_LONG": {
+      "price": 0.01349,
+      "time": "2026-03-09T05:01:56.575958"
+    },
+    "CRT_RPLUSDT_LONG": {
+      "price": 1.83,
+      "time": "2026-03-09T05:01:56.576856"
+    },
+    "CRT_MIRAUSDT_LONG": {
+      "price": 0.0819,
+      "time": "2026-03-09T05:01:56.577885"
+    },
+    "CRT_INITUSDT_LONG": {
+      "price": 0.0818,
+      "time": "2026-03-09T05:01:56.579086"
+    },
+    "CRT_CVXUSDT_LONG": {
+      "price": 2.222,
+      "time": "2026-03-09T05:01:56.580748"
+    },
+    "CRT_BIOUSDT_SHORT": {
+      "price": 0.0208,
+      "time": "2026-03-09T05:01:56.584174"
+    },
+    "CRT_ARKMUSDT_SHORT": {
+      "price": 0.1,
+      "time": "2026-03-09T05:01:56.587026"
+    },
+    "CRT_ATUSDT_LONG": {
+      "price": 0.1512,
+      "time": "2026-03-09T05:01:56.590458"
+    },
+    "CRT_ILVUSDT_SHORT": {
+      "price": 3.87,
+      "time": "2026-03-09T05:01:56.591795"
+    },
+    "CRT_JTOUSDT_SHORT": {
+      "price": 0.2553,
+      "time": "2026-03-09T05:01:56.593024"
+    },
+    "CRT_DOLOUSDT_LONG": {
+      "price": 0.03254,
+      "time": "2026-03-09T05:01:56.594698"
+    },
+    "CRT_QNTUSDT_LONG": {
+      "price": 62.91,
+      "time": "2026-03-09T05:01:56.597154"
+    },
+    "SR_CHANNEL_ETHUSDT_SHORT": {
+      "price": 1979.68,
+      "time": "2026-03-09T05:09:45.384777"
+    },
+    "CRT_AGLDUSDT_LONG": {
+      "price": 0.26,
+      "time": "2026-03-09T09:02:56.779021"
+    },
+    "CRT_PHBUSDT_SHORT": {
+      "price": 0.154,
+      "time": "2026-03-09T09:02:56.791806"
+    },
+    "CRT_EDENUSDT_LONG": {
+      "price": 0.0357,
+      "time": "2026-03-09T09:02:56.799373"
+    },
+    "CRT_KNCUSDT_SHORT": {
+      "price": 0.1267,
+      "time": "2026-03-09T09:02:56.809683"
+    },
+    "CRT_ICXUSDT_SHORT": {
+      "price": 0.0344,
+      "time": "2026-03-09T09:02:56.819837"
+    },
+    "CRT_KMNOUSDT_SHORT": {
+      "price": 0.02,
+      "time": "2026-03-09T09:02:56.828422"
+    },
+    "CRT_NILUSDT_SHORT": {
+      "price": 0.0489,
+      "time": "2026-03-09T09:02:56.834875"
+    },
+    "CRT_EPICUSDT_SHORT": {
+      "price": 0.268,
+      "time": "2026-03-09T09:02:56.841376"
+    },
+    "CRT_MOVRUSDT_SHORT": {
+      "price": 1.25,
+      "time": "2026-03-09T09:02:56.846094"
+    },
+    "CRT_METISUSDT_SHORT": {
+      "price": 3.18,
+      "time": "2026-03-09T09:02:56.851103"
+    },
+    "CRT_PEOPLEUSDT_SHORT": {
+      "price": 0.00716,
+      "time": "2026-03-09T09:02:56.856445"
+    },
+    "CRT_HOLOUSDT_SHORT": {
+      "price": 0.0598,
+      "time": "2026-03-09T09:02:56.861517"
+    },
+    "CRT_RDNTUSDT_SHORT": {
+      "price": 0.00521,
+      "time": "2026-03-09T09:02:56.868080"
+    },
+    "CRT_ASTRUSDT_LONG": {
+      "price": 0.007823,
+      "time": "2026-03-09T09:02:56.872953"
+    },
+    "CRT_SAGAUSDT_SHORT": {
+      "price": 0.0315,
+      "time": "2026-03-09T09:02:56.877809"
+    },
+    "CRT_RONINUSDT_SHORT": {
+      "price": 0.089,
+      "time": "2026-03-09T09:02:56.882707"
+    },
+    "CRT_RENDERUSDT_SHORT": {
+      "price": 1.379,
+      "time": "2026-03-09T09:02:56.887933"
+    },
+    "CRT_AVNTUSDT_SHORT": {
+      "price": 0.1573,
+      "time": "2026-03-09T09:02:56.892669"
+    },
+    "CRT_ARPAUSDT_SHORT": {
+      "price": 0.00981,
+      "time": "2026-03-09T09:02:56.898606"
+    },
+    "CRT_BATUSDT_SHORT": {
+      "price": 0.0971,
+      "time": "2026-03-09T09:02:56.909580"
+    },
+    "CRT_CHZUSDT_SHORT": {
+      "price": 0.0378,
+      "time": "2026-03-09T09:02:56.913305"
+    },
+    "CRT_CVCUSDT_SHORT": {
+      "price": 0.02925,
+      "time": "2026-03-09T09:02:56.916935"
+    },
+    "CRT_ENSUSDT_SHORT": {
+      "price": 5.8,
+      "time": "2026-03-09T09:02:56.920431"
+    },
+    "CRT_EGLDUSDT_SHORT": {
+      "price": 4.17,
+      "time": "2026-03-09T09:02:56.923608"
+    },
+    "CRT_ONDOUSDT_SHORT": {
+      "price": 0.2485,
+      "time": "2026-03-09T09:02:56.926680"
+    },
+    "CRT_PYTHUSDT_SHORT": {
+      "price": 0.0468,
+      "time": "2026-03-09T09:02:56.929575"
+    },
+    "CRT_NFPUSDT_SHORT": {
+      "price": 0.01465,
+      "time": "2026-03-09T09:02:56.932517"
+    },
+    "CRT_GMTUSDT_SHORT": {
+      "price": 0.01077,
+      "time": "2026-03-09T09:02:56.935607"
+    },
+    "CRT_CFXUSDT_SHORT": {
+      "price": 0.04867,
+      "time": "2026-03-09T09:02:56.938544"
+    },
+    "CRT_CELOUSDT_SHORT": {
+      "price": 0.0733,
+      "time": "2026-03-09T09:02:56.941523"
+    },
+    "CRT_POLUSDT_SHORT": {
+      "price": 0.0965,
+      "time": "2026-03-09T09:02:56.944415"
+    },
+    "CRT_ADAUSDT_SHORT": {
+      "price": 0.255,
+      "time": "2026-03-09T09:02:56.947347"
+    },
+    "CRT_PROMUSDT_SHORT": {
+      "price": 1.002,
+      "time": "2026-03-09T09:02:56.950344"
+    },
+    "CRT_PROVEUSDT_SHORT": {
+      "price": 0.2664,
+      "time": "2026-03-09T09:02:56.953537"
+    },
+    "CRT_ACXUSDT_SHORT": {
+      "price": 0.0333,
+      "time": "2026-03-09T09:02:56.957007"
+    },
+    "CRT_LPTUSDT_SHORT": {
+      "price": 2.285,
+      "time": "2026-03-09T09:02:56.960061"
+    },
+    "CRT_ARKUSDT_SHORT": {
+      "price": 0.1691,
+      "time": "2026-03-09T13:00:57.958512"
+    },
+    "CRT_EDUUSDT_SHORT": {
+      "price": 0.1,
+      "time": "2026-03-09T09:02:56.966672"
+    },
+    "CRT_LSKUSDT_SHORT": {
+      "price": 0.129,
+      "time": "2026-03-09T09:02:56.970092"
+    },
+    "CRT_QTUMUSDT_SHORT": {
+      "price": 0.87,
+      "time": "2026-03-09T09:02:56.973349"
+    },
+    "CRT_OPENUSDT_SHORT": {
+      "price": 0.1462,
+      "time": "2026-03-09T09:02:56.976117"
+    },
+    "CRT_BMTUSDT_SHORT": {
+      "price": 0.01483,
+      "time": "2026-03-09T09:02:56.978684"
+    },
+    "CRT_IOTAUSDT_SHORT": {
+      "price": 0.0648,
+      "time": "2026-03-09T09:02:56.981374"
+    },
+    "CRT_SFPUSDT_SHORT": {
+      "price": 0.2602,
+      "time": "2026-03-09T09:02:56.985486"
+    },
+    "CRT_CATIUSDT_SHORT": {
+      "price": 0.0406,
+      "time": "2026-03-09T09:02:56.989110"
+    },
+    "CRT_HBARUSDT_SHORT": {
+      "price": 0.09523,
+      "time": "2026-03-09T09:02:56.992416"
+    },
+    "CRT_MEUSDT_SHORT": {
+      "price": 0.1124,
+      "time": "2026-03-09T09:02:56.995089"
+    },
+    "CRT_ALGOUSDT_SHORT": {
+      "price": 0.0831,
+      "time": "2026-03-09T09:02:56.998117"
+    },
+    "CRT_API3USDT_SHORT": {
+      "price": 0.2809,
+      "time": "2026-03-09T09:02:57.001700"
+    },
+    "CRT_LTCUSDT_SHORT": {
+      "price": 53.32,
+      "time": "2026-03-09T09:02:57.008684"
+    },
+    "CRT_IDUSDT_SHORT": {
+      "price": 0.0409,
+      "time": "2026-03-09T09:02:57.012578"
+    },
+    "CRT_PENDLEUSDT_LONG": {
+      "price": 1.205,
+      "time": "2026-03-09T13:00:57.816233"
+    },
+    "CRT_ROSEUSDT_SHORT": {
+      "price": 0.01164,
+      "time": "2026-03-09T13:00:57.943687"
+    },
+    "CRT_C98USDT_LONG": {
+      "price": 0.0248,
+      "time": "2026-03-09T13:00:57.945842"
+    },
+    "CRT_CETUSUSDT_LONG": {
+      "price": 0.01588,
+      "time": "2026-03-09T13:00:57.947963"
+    },
+    "CRT_AUSDT_LONG": {
+      "price": 0.0754,
+      "time": "2026-03-09T13:00:57.950146"
+    },
+    "CRT_LQTYUSDT_LONG": {
+      "price": 0.271,
+      "time": "2026-03-09T13:00:57.952233"
+    },
+    "CRT_BERAUSDT_LONG": {
+      "price": 0.529,
+      "time": "2026-03-09T13:00:57.954429"
+    },
+    "CRT_CUSDT_LONG": {
+      "price": 0.0475,
+      "time": "2026-03-09T13:00:57.956568"
+    },
+    "CRT_PHBUSDT_LONG": {
+      "price": 0.154,
+      "time": "2026-03-09T13:03:43.577049"
+    },
+    "CRT_BICOUSDT_LONG": {
+      "price": 0.0191,
+      "time": "2026-03-09T13:03:43.578926"
+    },
+    "CRT_SCRUSDT_LONG": {
+      "price": 0.04022,
+      "time": "2026-03-09T13:03:43.580681"
+    },
+    "CRT_DASHUSDT_SHORT": {
+      "price": 31.71,
+      "time": "2026-03-09T13:03:43.583845"
+    }
+  },
+  "trades": {}
+}
