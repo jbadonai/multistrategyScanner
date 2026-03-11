@@ -188,19 +188,20 @@ SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
 # ============================================================================
 # PROFIT TARGET MANAGEMENT
 # ============================================================================
-# Automatically close trades when they hit a profit percentage
-# This monitors open positions and closes them at target profit %
+# Override strategy TP levels with a fixed % profit target
+# Much more efficient than monitoring - TP is set when order is placed
 
-ENABLE_PROFIT_TARGET = True           # Enable automatic profit taking
-PROFIT_TARGET_PERCENTAGE = 5.0        # Close at 5% profit (default)
-                                     # Ignores TP levels, uses % profit instead
-                                     # Example: 5.0 = close at 5% gain
-                                     
-CHECK_PROFIT_INTERVAL = 30            # Check positions every 30 seconds
-                                     # How often to check if profit target hit
+USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP with % profit target
+PERCENTAGE_PROFIT_TARGET = 5.0        # Set TP at 5% profit (default)
+                                      # If True, ignores strategy TP levels
+                                      # If False, uses strategy TP1/TP2
 
-# Note: This overrides strategy TP levels if enabled
-# The scanner will monitor positions and close them automatically
+# How it works:
+# - LONG: TP = entry * (1 + 0.05) = entry * 1.05
+# - SHORT: TP = entry * (1 - 0.05) = entry * 0.95
+# - Set once when placing order
+# - ByBit automatically closes at TP (guaranteed!)
+# - No monitoring needed
 
 # ============================================================================
 # GLOBAL SCANNER SETTINGS
