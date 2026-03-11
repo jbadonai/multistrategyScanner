@@ -192,7 +192,7 @@ SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
 # Much more efficient than monitoring - TP is set when order is placed
 
 USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP with % profit target
-PERCENTAGE_PROFIT_TARGET = 5.0        # Set TP at 5% profit (default)
+PERCENTAGE_PROFIT_TARGET = 3.0        # Set TP at 5% profit (default)
                                       # If True, ignores strategy TP levels
                                       # If False, uses strategy TP1/TP2
 
