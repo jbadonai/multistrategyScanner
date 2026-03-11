@@ -19,7 +19,6 @@ TELEGRAM_CHAT_ID = "5252531829"
 # ============================================================================
 # TRADING PAIRS TO MONITOR
 # ============================================================================
-# PAIRS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "DOGEUSDT","BNBUSDT", "BTCUSDC", "ETHUSDC", "ADAUSDT", "LINKUSDT"]
 PAIRS = ["PHAUSDT","FIOUSDT","FORMUSDT","SIGNUSDT","BARDUSDT","HUMAUSDT","KITEUSDT","SAHARAUSDT","AIXBTUSDT","KAVAUSDT","AGLDUSDT","LAUSDT","GUNUSDT","RESOLVUSDT","ALICEUSDT","COOKIEUSDT","PHBUSDT","ALLOUSDT","ORCAUSDT","PLUMEUSDT","EULUSDT","EDENUSDT","GIGGLEUSDT","BANANAUSDT","KNCUSDT","FLOWUSDT","RPLUSDT","ICXUSDT","BICOUSDT","MIRAUSDT","MUBARAKUSDT","BREVUSDT","NILUSDT","KMNOUSDT","MLNUSDT","HOOKUSDT","INITUSDT","ENSOUSDT","BABYUSDT","NEARUSDT","MOVRUSDT","EPICUSDT","BANKUSDT","RLCUSDT","FIDAUSDT","DYDXUSDT","SCRUSDT","METISUSDT","HFTUSDT","CGPTUSDT","PENGUUSDT","PEOPLEUSDT","MITOUSDT","HOLOUSDT","SAPIENUSDT","JUPUSDT","MORPHOUSDT","ENAUSDT","SCRTUSDT","PARTIUSDT","NTRNUSDT","MBOXUSDT","RDNTUSDT","COWUSDT","AAVEUSDT","BBUSDT","EIGENUSDT","KSMUSDT","DEXEUSDT","IOUSDT","HOMEUSDT","CVXUSDT","MAGICUSDT","PNUTUSDT","ASTRUSDT","HAEDALUSDT","DASHUSDT","NEWTUSDT","BIOUSDT","SAGAUSDT","KAITOUSDT","DUSKUSDT","RONINUSDT","OXTUSDT","DOGEUSDT","KERNELUSDT","ALTUSDT","APEUSDT","SNXUSDT","RENDERUSDT","ACEUSDT","IMXUSDT","BELUSDT","ORDIUSDT","ARKMUSDT","ARUSDT","LRCUSDT","COTIUSDT","AVNTUSDT","RAREUSDT","CHRUSDT","ARPAUSDT","LDOUSDT","DYMUSDT","CTSIUSDT","MAVUSDT","CTKUSDT","BATUSDT","SOLUSDT","PENDLEUSDT","CVCUSDT","CHZUSDT","ROSEUSDT","2ZUSDT","ENSUSDT","SHELLUSDT","ACTUSDT","ARBUSDT","ONTUSDT","LUMIAUSDT","BANDUSDT","SKYUSDT","C98USDT","EGLDUSDT","ONDOUSDT","ETHUSDT","GMTUSDT","ATUSDT","PYTHUSDT","NFPUSDT","CETUSUSDT","SANDUSDT","MASKUSDT","CFXUSDT","REDUSDT","APTUSDT","ILVUSDT","JTOUSDT","OPUSDT","CELOUSDT","ETHFIUSDT","CRVUSDT","MANTAUSDT","POLUSDT","ADAUSDT","AXSUSDT","METUSDT","AEVOUSDT","PROMUSDT","NMRUSDT","ICPUSDT","NEOUSDT","HEMIUSDT","CYBERUSDT","AUSDT","BIGTIMEUSDT","PROVEUSDT","LINKUSDT","AXLUSDT","AVAUSDT","DOTUSDT","LQTYUSDT","1INCHUSDT","GMXUSDT","BERAUSDT","FLUXUSDT","LISTAUSDT","GLMUSDT","CUSDT","MTLUSDT","MMTUSDT","MANAUSDT","ACXUSDT","RUNEUSDT","PORTALUSDT","LPTUSDT","BLURUSDT","HEIUSDT","MOVEUSDT","DOLOUSDT","ARKUSDT","EDUUSDT","SKLUSDT","BNTUSDT","POWRUSDT","LSKUSDT","QNTUSDT","ENJUSDT","DIAUSDT","INJUSDT","OGNUSDT","ETCUSDT","QTUMUSDT","OPENUSDT","BMTUSDT","POLYXUSDT","SEIUSDT","HIGHUSDT","FILUSDT","IOTAUSDT","MINAUSDT","CATIUSDT","GRTUSDT","AVAXUSDT","SFPUSDT","BTCUSDT","ASTERUSDT","HBARUSDT","MEUSDT","ASRUSDT","COMPUSDT","0GUSDT","HIVEUSDT","ALGOUSDT","OGUSDT","API3USDT","AUCTIONUSDT","AWEUSDT","GASUSDT","ATOMUSDT","HYPERUSDT","NXPCUSDT","KAIAUSDT","JSTUSDT","CAKEUSDT","FFUSDT","ERAUSDT","ONGUSDT","LTCUSDT","ALPINEUSDT","IDUSDT","BNBUSDT"]
 
 # ============================================================================
@@ -185,6 +184,23 @@ SR_MIN_REVERSAL_ATR = 0.6             # Min reversal strength = ATR * 0.6
 # Trade Frequency Control
 SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
                                      # After N trades, channel likely breaks
+
+# ============================================================================
+# PROFIT TARGET MANAGEMENT
+# ============================================================================
+# Automatically close trades when they hit a profit percentage
+# This monitors open positions and closes them at target profit %
+
+ENABLE_PROFIT_TARGET = True           # Enable automatic profit taking
+PROFIT_TARGET_PERCENTAGE = 5.0        # Close at 5% profit (default)
+                                     # Ignores TP levels, uses % profit instead
+                                     # Example: 5.0 = close at 5% gain
+                                     
+CHECK_PROFIT_INTERVAL = 30            # Check positions every 30 seconds
+                                     # How often to check if profit target hit
+
+# Note: This overrides strategy TP levels if enabled
+# The scanner will monitor positions and close them automatically
 
 # ============================================================================
 # GLOBAL SCANNER SETTINGS
