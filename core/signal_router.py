@@ -151,9 +151,36 @@ class SignalRouter:
             if signal.auto_trade_enabled:
                 message += f"   🤖 Auto-trade: ENABLED\n"
             
+            # Add CRT chart if available and enabled
+            if signal.strategy_name == "CRT" and hasattr(self.config, 'CRT_INCLUDE_CHART_IN_TELEGRAM') and self.config.CRT_INCLUDE_CHART_IN_TELEGRAM:
+                chart = self._generate_crt_chart(signal)
+                if chart:
+                    message += f"\n```\n{chart}\n```\n"
+            
             message += "\n"
         
         message += f"━━━━━━━━━━━━━━━━━━━━━━━\n"
         message += f"⏱️ Time: `{signals[0].timestamp.strftime('%Y-%m-%d %H:%M:%S')}`\n"
         
         return message
+    
+    def _generate_crt_chart(self, signal: StrategySignal) -> str:
+        """Generate CRT pattern chart from signal details"""
+        try:
+            from crt_chart_generator import CRTChartGenerator
+            
+            # Get CRT pattern data from signal details
+            if not signal.details or "crt_pattern" not in signal.details:
+                return None
+            
+            crt_data = signal.details["crt_pattern"]
+            
+            # Get candles if available
+            if "candles" in crt_data:
+                candles = crt_data["candles"]
+                return CRTChartGenerator.generate_crt_chart(candles, crt_data)
+            
+            return None
+        except Exception as e:
+            print(f"   ⚠️  Chart generation failed: {e}")
+            return None

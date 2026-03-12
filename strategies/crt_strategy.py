@@ -103,6 +103,9 @@ class CRTStrategy(BaseStrategy):
         # Update processed candle tracker
         self.last_candle_time[pair] = completed_candle_time
         
+        # Add candles to CRT data for visualization
+        crt["candles"] = candles[-5:] if len(candles) >= 5 else candles
+        
         # Convert to StrategySignal
         signal = self._create_signal(pair, crt, htf_bias)
         
@@ -129,7 +132,9 @@ class CRTStrategy(BaseStrategy):
             "Candle 1 Low": f"{crt['candle_1_low']:.8f}",
             "Sweep Price": f"{stop_loss:.8f}",
             "Body Ratio": f"{crt.get('body_ratio', 0):.1f}%",
-            "HTF Trend": htf_bias.upper() if htf_bias else "NEUTRAL"
+            "HTF Trend": htf_bias.upper() if htf_bias else "NEUTRAL",
+            # Add raw CRT data for chart generation
+            "crt_pattern": crt  # Store full CRT data for visualization
         }
         
         signal = StrategySignal(

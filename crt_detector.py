@@ -129,10 +129,9 @@ class CRTDetector:
             Dict with sweep info or None
         """
         # Candle 2 MUST sweep BELOW candle 1 low (not equal)
-        # Use a small threshold to ensure actual sweep
-        sweep_threshold = range_low * 0.0001  # 0.01% minimum sweep
-        if candle_2.low >= range_low - sweep_threshold:
-            return None
+        # Simple check: candle_2.low must be strictly less than range_low
+        if candle_2.low >= range_low:
+            return None  # No sweep occurred
         
         # Candle 2 must close STRICTLY WITHIN candle 1 range (not at boundaries)
         # Close must be inside the range, not exactly at the boundary
@@ -162,10 +161,9 @@ class CRTDetector:
             Dict with sweep info or None
         """
         # Candle 2 MUST sweep ABOVE candle 1 high (not equal)
-        # Use a small threshold to ensure actual sweep
-        sweep_threshold = range_high * 0.0001  # 0.01% minimum sweep
-        if candle_2.high <= range_high + sweep_threshold:
-            return None
+        # Simple check: candle_2.high must be strictly greater than range_high
+        if candle_2.high <= range_high:
+            return None  # No sweep occurred
         
         # Candle 2 must close STRICTLY WITHIN candle 1 range (not at boundaries)
         # Close must be inside the range, not exactly at the boundary

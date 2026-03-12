@@ -126,6 +126,12 @@ CRT_HTF_LOOKBACK = 20
 # Signal Freshness
 CRT_MAX_SIGNAL_AGE_MINUTES = 245  # 4H + 5min buffer
 
+# Debug/Visualization
+CRT_INCLUDE_CHART_IN_TELEGRAM = True  # Include ASCII chart in Telegram alerts
+                                      # Shows candle details, sweep amounts
+                                      # Helps verify pattern validity
+                                      # Set to False to reduce message size
+
 # ============================================================================
 # STRATEGY 3: SR CHANNEL STRATEGY (NEW)
 # ============================================================================
