@@ -188,17 +188,28 @@ SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
 # ============================================================================
 # PROFIT TARGET MANAGEMENT
 # ============================================================================
-# Override strategy TP levels with a fixed % profit target
+# Override strategy TP levels with a fixed % profit target (ROE-based)
 # Much more efficient than monitoring - TP is set when order is placed
 
 USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP with % profit target
-PERCENTAGE_PROFIT_TARGET = 3.0        # Set TP at 5% profit (default)
+PERCENTAGE_PROFIT_TARGET = 3.0        # Set TP at 5% ROE (as shown on ByBit)
                                       # If True, ignores strategy TP levels
                                       # If False, uses strategy TP1/TP2
 
+# IMPORTANT: This is ROE% (Return on Equity), not price change%!
+# ByBit shows ROE% which accounts for leverage:
+#   ROE% = Price Change% × Leverage
+#
+# Examples with 10x leverage:
+#   5% ROE target  → Price needs to move 0.5% (5% / 10)
+#   3% ROE target  → Price needs to move 0.3% (3% / 10)
+#   10% ROE target → Price needs to move 1.0% (10% / 10)
+#
+# This matches what you see on ByBit app: "11.15%", "4.16%", etc.
+#
 # How it works:
-# - LONG: TP = entry * (1 + 0.05) = entry * 1.05
-# - SHORT: TP = entry * (1 - 0.05) = entry * 0.95
+# - LONG: TP = entry × (1 + target_roe% / leverage / 100)
+# - SHORT: TP = entry × (1 - target_roe% / leverage / 100)
 # - Set once when placing order
 # - ByBit automatically closes at TP (guaranteed!)
 # - No monitoring needed

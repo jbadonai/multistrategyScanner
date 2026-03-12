@@ -167,17 +167,25 @@ class TradeExecutor:
         
         # Override TP with percentage profit target if enabled
         if hasattr(self.config, 'USE_PERCENTAGE_PROFIT_TARGET') and self.config.USE_PERCENTAGE_PROFIT_TARGET:
-            # Calculate TP based on percentage
-            target_pct = self.config.PERCENTAGE_PROFIT_TARGET / 100.0
+            # IMPORTANT: ByBit shows ROE% (Return on Equity), not price change%
+            # ROE% = Price Change% × Leverage
+            # So we need: Price Change% = Target ROE% / Leverage
+            
+            target_roe_pct = self.config.PERCENTAGE_PROFIT_TARGET
+            
+            # Calculate actual price change needed
+            # For 3% ROE with 10x leverage: price needs to move 3%/10 = 0.3%
+            price_change_pct = target_roe_pct / leverage / 100.0
             
             if signal.signal_type == "LONG":
-                # LONG: TP = entry * (1 + %)
-                take_profit = signal.entry_price * (1 + target_pct)
+                # LONG: TP = entry * (1 + price_change%)
+                take_profit = signal.entry_price * (1 + price_change_pct)
             else:
-                # SHORT: TP = entry * (1 - %)
-                take_profit = signal.entry_price * (1 - target_pct)
+                # SHORT: TP = entry * (1 - price_change%)
+                take_profit = signal.entry_price * (1 - price_change_pct)
             
-            print(f"\n   🎯 Using {self.config.PERCENTAGE_PROFIT_TARGET}% profit target")
+            print(f"\n   🎯 Using {target_roe_pct}% ROE target (leverage {leverage}x)")
+            print(f"      Price change needed: {price_change_pct*100:.3f}%")
             print(f"      Original TP: {signal.take_profit:.8f} → Override: {take_profit:.8f}")
         else:
             # Use strategy's TP
