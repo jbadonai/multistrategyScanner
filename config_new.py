@@ -19,7 +19,37 @@ TELEGRAM_CHAT_ID = "5252531829"
 # ============================================================================
 # TRADING PAIRS TO MONITOR
 # ============================================================================
+# Choose between static pairs or dynamic pair selection
+
+# Static vs Dynamic Pair Selection
+USE_DYNAMIC_PAIRS = True             # True = Auto-select volatile pairs daily
+                                      # False = Use PAIRS list below (static)
+
+# Static Pairs (used when USE_DYNAMIC_PAIRS = False)
 PAIRS = ["PHAUSDT","FIOUSDT","FORMUSDT","SIGNUSDT","BARDUSDT","HUMAUSDT","KITEUSDT","SAHARAUSDT","AIXBTUSDT","KAVAUSDT","AGLDUSDT","LAUSDT","GUNUSDT","RESOLVUSDT","ALICEUSDT","COOKIEUSDT","PHBUSDT","ALLOUSDT","ORCAUSDT","PLUMEUSDT","EULUSDT","EDENUSDT","GIGGLEUSDT","BANANAUSDT","KNCUSDT","FLOWUSDT","RPLUSDT","ICXUSDT","BICOUSDT","MIRAUSDT","MUBARAKUSDT","BREVUSDT","NILUSDT","KMNOUSDT","MLNUSDT","HOOKUSDT","INITUSDT","ENSOUSDT","BABYUSDT","NEARUSDT","MOVRUSDT","EPICUSDT","BANKUSDT","RLCUSDT","FIDAUSDT","DYDXUSDT","SCRUSDT","METISUSDT","HFTUSDT","CGPTUSDT","PENGUUSDT","PEOPLEUSDT","MITOUSDT","HOLOUSDT","SAPIENUSDT","JUPUSDT","MORPHOUSDT","ENAUSDT","SCRTUSDT","PARTIUSDT","NTRNUSDT","MBOXUSDT","RDNTUSDT","COWUSDT","AAVEUSDT","BBUSDT","EIGENUSDT","KSMUSDT","DEXEUSDT","IOUSDT","HOMEUSDT","CVXUSDT","MAGICUSDT","PNUTUSDT","ASTRUSDT","HAEDALUSDT","DASHUSDT","NEWTUSDT","BIOUSDT","SAGAUSDT","KAITOUSDT","DUSKUSDT","RONINUSDT","OXTUSDT","DOGEUSDT","KERNELUSDT","ALTUSDT","APEUSDT","SNXUSDT","RENDERUSDT","ACEUSDT","IMXUSDT","BELUSDT","ORDIUSDT","ARKMUSDT","ARUSDT","LRCUSDT","COTIUSDT","AVNTUSDT","RAREUSDT","CHRUSDT","ARPAUSDT","LDOUSDT","DYMUSDT","CTSIUSDT","MAVUSDT","CTKUSDT","BATUSDT","SOLUSDT","PENDLEUSDT","CVCUSDT","CHZUSDT","ROSEUSDT","2ZUSDT","ENSUSDT","SHELLUSDT","ACTUSDT","ARBUSDT","ONTUSDT","LUMIAUSDT","BANDUSDT","SKYUSDT","C98USDT","EGLDUSDT","ONDOUSDT","ETHUSDT","GMTUSDT","ATUSDT","PYTHUSDT","NFPUSDT","CETUSUSDT","SANDUSDT","MASKUSDT","CFXUSDT","REDUSDT","APTUSDT","ILVUSDT","JTOUSDT","OPUSDT","CELOUSDT","ETHFIUSDT","CRVUSDT","MANTAUSDT","POLUSDT","ADAUSDT","AXSUSDT","METUSDT","AEVOUSDT","PROMUSDT","NMRUSDT","ICPUSDT","NEOUSDT","HEMIUSDT","CYBERUSDT","AUSDT","BIGTIMEUSDT","PROVEUSDT","LINKUSDT","AXLUSDT","AVAUSDT","DOTUSDT","LQTYUSDT","1INCHUSDT","GMXUSDT","BERAUSDT","FLUXUSDT","LISTAUSDT","GLMUSDT","CUSDT","MTLUSDT","MMTUSDT","MANAUSDT","ACXUSDT","RUNEUSDT","PORTALUSDT","LPTUSDT","BLURUSDT","HEIUSDT","MOVEUSDT","DOLOUSDT","ARKUSDT","EDUUSDT","SKLUSDT","BNTUSDT","POWRUSDT","LSKUSDT","QNTUSDT","ENJUSDT","DIAUSDT","INJUSDT","OGNUSDT","ETCUSDT","QTUMUSDT","OPENUSDT","BMTUSDT","POLYXUSDT","SEIUSDT","HIGHUSDT","FILUSDT","IOTAUSDT","MINAUSDT","CATIUSDT","GRTUSDT","AVAXUSDT","SFPUSDT","BTCUSDT","ASTERUSDT","HBARUSDT","MEUSDT","ASRUSDT","COMPUSDT","0GUSDT","HIVEUSDT","ALGOUSDT","OGUSDT","API3USDT","AUCTIONUSDT","AWEUSDT","GASUSDT","ATOMUSDT","HYPERUSDT","NXPCUSDT","KAIAUSDT","JSTUSDT","CAKEUSDT","FFUSDT","ERAUSDT","ONGUSDT","LTCUSDT","ALPINEUSDT","IDUSDT","BNBUSDT"]
+
+# Dynamic Pair Scanner Settings (used when USE_DYNAMIC_PAIRS = True)
+VOLATILITY_THRESHOLD = 2.0            # Minimum 24h price change % to qualify
+                                      # Higher = fewer, more volatile pairs
+                                      # Lower = more pairs, less volatile
+                                      # Recommended: 2.0 - 5.0
+
+MAX_DYNAMIC_PAIRS = 100                # Maximum pairs to track
+                                      # Top N most volatile pairs selected
+                                      # Recommended: 30-50 for good coverage
+
+RESCAN_TIME = "00:00"                 # When to rescan pairs daily (HH:MM)
+                                      # Uses your computer's local time
+                                      # "00:00" = midnight, "09:00" = 9 AM
+                                      # Rescans automatically each day
+
+# How it works when USE_DYNAMIC_PAIRS = True:
+# 1. At startup (or daily at RESCAN_TIME): Scans Bybit + Binance
+# 2. Finds all USDT pairs listed on BOTH exchanges
+# 3. Calculates average 24h volatility for each pair
+# 4. Selects top MAX_DYNAMIC_PAIRS above VOLATILITY_THRESHOLD
+# 5. Uses these pairs for all strategies until next rescan
+# 6. Rescans daily to adapt to changing market conditions
 
 # ============================================================================
 # BINANCE API SETTINGS
@@ -40,7 +70,7 @@ FIXED_LEVERAGE = 10
 ORDER_VALUE_MULTIPLIER = 1.0
 USE_PERCENTAGE_OF_BALANCE = False
 PERCENTAGE_OF_BALANCE = 10.0
-MAX_CONCURRENT_TRADES = 10
+MAX_CONCURRENT_TRADES = 5
 MARKET_ORDER = True
 SLIPPAGE_TOLERANCE = 0.001
 
@@ -192,7 +222,7 @@ SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
 # Much more efficient than monitoring - TP is set when order is placed
 
 USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP with % profit target
-PERCENTAGE_PROFIT_TARGET = 3.0        # Set TP at 5% ROE (as shown on ByBit)
+PERCENTAGE_PROFIT_TARGET = 5.0        # Set TP at 5% ROE (as shown on ByBit)
                                       # If True, ignores strategy TP levels
                                       # If False, uses strategy TP1/TP2
 

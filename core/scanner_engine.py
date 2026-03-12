@@ -33,6 +33,17 @@ class ScannerEngine:
         self.debug_mode = config.LOG_LEVEL == "DEBUG"
         self._setup_logging()
         
+        # Initialize dynamic pair scanner if enabled
+        if hasattr(config, 'USE_DYNAMIC_PAIRS') and config.USE_DYNAMIC_PAIRS:
+            from dynamic_pair_scanner import DynamicPairScanner
+            self.pair_scanner = DynamicPairScanner(config)
+            self.pair_scanner.start()
+            # Get initial pairs from scanner
+            self.pairs = self.pair_scanner.get_pairs()
+        else:
+            self.pair_scanner = None
+            self.pairs = config.PAIRS
+        
         # Initialize strategies
         self.strategies = self._initialize_strategies()
         
@@ -41,7 +52,6 @@ class ScannerEngine:
         self.trade_executor = TradeExecutor(config)
         
         # Settings
-        self.pairs = config.PAIRS
         self.scan_interval = config.SCAN_INTERVAL
         self.max_workers = config.MAX_WORKERS
         self.running = False
@@ -49,6 +59,16 @@ class ScannerEngine:
         print(f"\n{'='*60}")
         print(f"🎯 MULTI-STRATEGY SCANNER ENGINE")
         print(f"{'='*60}")
+        
+        # Display pair mode
+        if self.pair_scanner:
+            print(f"📊 Pair Mode: DYNAMIC (auto-selects volatile pairs)")
+            print(f"   Monitoring: {len(self.pairs)} pairs")
+            print(f"   Rescans: Daily at {config.RESCAN_TIME}")
+        else:
+            print(f"📊 Pair Mode: STATIC (manual pair list)")
+            print(f"   Monitoring: {len(self.pairs)} pairs")
+        
         self._display_strategy_status()
     
     def _setup_logging(self):
@@ -150,6 +170,11 @@ class ScannerEngine:
         
         while self.running:
             scan_count += 1
+            
+            # Update pairs from dynamic scanner if enabled
+            if self.pair_scanner:
+                self.pairs = self.pair_scanner.get_pairs()
+            
             print(f"\n{'='*60}")
             print(f"📊 Scan #{scan_count} - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"{'='*60}")
@@ -456,4 +481,9 @@ class ScannerEngine:
         """Stop the scanner"""
         print("\n🛑 Stopping scanner...")
         self.running = False
+        
+        # Stop dynamic pair scanner if running
+        if self.pair_scanner:
+            self.pair_scanner.stop()
+        
         print("✅ Scanner stopped")
