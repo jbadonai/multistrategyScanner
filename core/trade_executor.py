@@ -165,31 +165,45 @@ class TradeExecutor:
         # Determine side
         side = "Buy" if signal.signal_type == "LONG" else "Sell"
         
-        # Override TP with percentage profit target if enabled
+        # Override TP and SL with percentage targets if enabled
         if hasattr(self.config, 'USE_PERCENTAGE_PROFIT_TARGET') and self.config.USE_PERCENTAGE_PROFIT_TARGET:
             # IMPORTANT: ByBit shows ROE% (Return on Equity), not price change%
             # ROE% = Price Change% × Leverage
             # So we need: Price Change% = Target ROE% / Leverage
             
-            target_roe_pct = self.config.PERCENTAGE_PROFIT_TARGET
+            target_profit_roe = self.config.PERCENTAGE_PROFIT_TARGET
+            target_loss_roe = self.config.PERCENTAGE_STOP_LOSS
             
-            # Calculate actual price change needed
-            # For 3% ROE with 10x leverage: price needs to move 3%/10 = 0.3%
-            price_change_pct = target_roe_pct / leverage / 100.0
+            # Calculate actual price changes needed
+            # For 20% profit ROE with 10x leverage: price needs to move 20%/10 = 2.0%
+            # For 5% loss ROE with 10x leverage: price needs to move 5%/10 = 0.5%
+            profit_price_change = target_profit_roe / leverage / 100.0
+            loss_price_change = target_loss_roe / leverage / 100.0
             
             if signal.signal_type == "LONG":
-                # LONG: TP = entry * (1 + price_change%)
-                take_profit = signal.entry_price * (1 + price_change_pct)
+                # LONG: TP above entry, SL below entry
+                take_profit = signal.entry_price * (1 + profit_price_change)
+                stop_loss = signal.entry_price * (1 - loss_price_change)
             else:
-                # SHORT: TP = entry * (1 - price_change%)
-                take_profit = signal.entry_price * (1 - price_change_pct)
+                # SHORT: TP below entry, SL above entry
+                take_profit = signal.entry_price * (1 - profit_price_change)
+                stop_loss = signal.entry_price * (1 + loss_price_change)
             
-            print(f"\n   🎯 Using {target_roe_pct}% ROE target (leverage {leverage}x)")
-            print(f"      Price change needed: {price_change_pct*100:.3f}%")
+            # Calculate R:R ratio
+            risk = abs(signal.entry_price - stop_loss)
+            reward = abs(take_profit - signal.entry_price)
+            rr_ratio = reward / risk if risk > 0 else 0
+            
+            print(f"\n   🎯 Using percentage TP/SL (leverage {leverage}x)")
+            print(f"      TP: {target_profit_roe}% ROE → {profit_price_change*100:.3f}% price move")
+            print(f"      SL: {target_loss_roe}% ROE → {loss_price_change*100:.3f}% price move")
+            print(f"      R:R Ratio: {rr_ratio:.2f}:1")
             print(f"      Original TP: {signal.take_profit:.8f} → Override: {take_profit:.8f}")
+            print(f"      Original SL: {signal.stop_loss:.8f} → Override: {stop_loss:.8f}")
         else:
-            # Use strategy's TP
+            # Use strategy's TP and SL
             take_profit = signal.take_profit
+            stop_loss = signal.stop_loss
         
         # Generate unique order ID
         import time
@@ -198,7 +212,7 @@ class TradeExecutor:
         
         print(f"\n   🤖 [{signal.strategy_name}] Placing {side} order for {symbol}")
         print(f"      Qty: {qty}, Entry: ~{signal.entry_price:.8f}")
-        print(f"      SL: {signal.stop_loss:.8f}, TP: {take_profit:.8f}")
+        print(f"      SL: {stop_loss:.8f}, TP: {take_profit:.8f}")
         print(f"      Leverage: {leverage}x, Value: ${order_value:.2f}")
         
         # Place order
@@ -206,7 +220,7 @@ class TradeExecutor:
             symbol=symbol,
             side=side,
             qty=qty,
-            stop_loss=signal.stop_loss,
+            stop_loss=stop_loss,  # Use calculated SL
             take_profit=take_profit,  # Use calculated TP
             order_link_id=order_link_id
         )

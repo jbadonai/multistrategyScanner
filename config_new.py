@@ -34,7 +34,7 @@ VOLATILITY_THRESHOLD = 2.0            # Minimum 24h price change % to qualify
                                       # Lower = more pairs, less volatile
                                       # Recommended: 2.0 - 5.0
 
-MAX_DYNAMIC_PAIRS = 100                # Maximum pairs to track
+MAX_DYNAMIC_PAIRS = 150                # Maximum pairs to track
                                       # Top N most volatile pairs selected
                                       # Recommended: 30-50 for good coverage
 
@@ -224,31 +224,35 @@ SR_MAX_TRADES_PER_CHANNEL = 2         # Max bounces per channel
 # ============================================================================
 # PROFIT TARGET MANAGEMENT
 # ============================================================================
-# Override strategy TP levels with a fixed % profit target (ROE-based)
-# Much more efficient than monitoring - TP is set when order is placed
+# Override strategy TP/SL levels with fixed % profit/loss targets (ROE-based)
+# Much more efficient than monitoring - TP/SL set when order is placed
 
-USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP with % profit target
-PERCENTAGE_PROFIT_TARGET = 5.0        # Set TP at 5% ROE (as shown on ByBit)
-                                      # If True, ignores strategy TP levels
-                                      # If False, uses strategy TP1/TP2
+USE_PERCENTAGE_PROFIT_TARGET = True   # Override TP/SL with % targets
+PERCENTAGE_PROFIT_TARGET = 20.0       # Set TP at 20% ROE (as shown on ByBit)
+PERCENTAGE_STOP_LOSS = 5.0            # Set SL at 5% ROE loss
+                                      # If True, ignores strategy TP/SL levels
+                                      # If False, uses strategy TP1/TP2/SL
 
-# IMPORTANT: This is ROE% (Return on Equity), not price change%!
+# IMPORTANT: These are ROE% (Return on Equity), not price change%!
 # ByBit shows ROE% which accounts for leverage:
 #   ROE% = Price Change% × Leverage
 #
 # Examples with 10x leverage:
-#   5% ROE target  → Price needs to move 0.5% (5% / 10)
-#   3% ROE target  → Price needs to move 0.3% (3% / 10)
-#   10% ROE target → Price needs to move 1.0% (10% / 10)
+#   TP 20% ROE  → Price needs to move 2.0% (20% / 10)
+#   SL 5% ROE   → Price needs to move 0.5% (5% / 10)
 #
 # This matches what you see on ByBit app: "11.15%", "4.16%", etc.
 #
 # How it works:
-# - LONG: TP = entry × (1 + target_roe% / leverage / 100)
-# - SHORT: TP = entry × (1 - target_roe% / leverage / 100)
+# - LONG:  TP = entry × (1 + 20%/leverage), SL = entry × (1 - 5%/leverage)
+# - SHORT: TP = entry × (1 - 20%/leverage), SL = entry × (1 + 5%/leverage)
 # - Set once when placing order
-# - ByBit automatically closes at TP (guaranteed!)
+# - ByBit automatically closes at TP or SL (guaranteed!)
 # - No monitoring needed
+#
+# Risk/Reward:
+#   20% TP / 5% SL = 4:1 R:R ratio (very favorable!)
+#   You risk 5% to make 20%
 
 # ============================================================================
 # GLOBAL SCANNER SETTINGS
