@@ -7,7 +7,6 @@ from typing import List, Optional, Dict
 from datetime import datetime, timedelta
 from strategies.base_strategy import BaseStrategy, StrategySignal
 from models import MarketData, CRTAlert
-from crt_detector import CRTDetector
 from htf_trend_analyzer import HTFTrendAnalyzer
 
 
@@ -15,12 +14,22 @@ class CRTStrategy(BaseStrategy):
     """
     CRT (Change of Retail Tendency) Strategy
     Detects liquidity sweeps with close back in range on 4H timeframe
+    Now with enhanced professional ICT filters
     """
     
     def __init__(self, config):
         super().__init__("CRT", config)
         
-        self.crt_detector = CRTDetector()
+        # Choose detector based on config
+        if hasattr(config, 'CRT_USE_ENHANCED_FILTERS') and config.CRT_USE_ENHANCED_FILTERS:
+            from enhanced_crt_detector import EnhancedCRTDetector
+            self.crt_detector = EnhancedCRTDetector(config)
+            print("   ✅ CRT: Using ENHANCED detector (professional ICT filters)")
+        else:
+            from crt_detector import CRTDetector
+            self.crt_detector = CRTDetector()
+            print("   ℹ️  CRT: Using BASIC detector")
+        
         self.htf_analyzer = HTFTrendAnalyzer() if config.CRT_REQUIRE_HTF_ALIGNMENT else None
         self.timeframe = config.CRT_TIMEFRAME
         self.max_signal_age = timedelta(minutes=config.CRT_MAX_SIGNAL_AGE_MINUTES)
@@ -134,7 +143,10 @@ class CRTStrategy(BaseStrategy):
             "Body Ratio": f"{crt.get('body_ratio', 0):.1f}%",
             "HTF Trend": htf_bias.upper() if htf_bias else "NEUTRAL",
             # Add raw CRT data for chart generation
-            "crt_pattern": crt  # Store full CRT data for visualization
+            "crt_pattern": crt,  # Store full CRT data for visualization
+            # Add quality metrics if available
+            "Rejection Wick": f"{crt.get('rejection_wick_pct', 0):.1f}%",
+            "Close Inside": f"{crt.get('close_inside_pct', 0):.1f}%"
         }
         
         signal = StrategySignal(

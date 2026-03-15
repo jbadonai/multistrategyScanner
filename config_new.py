@@ -118,6 +118,48 @@ CRT_AUTO_TRADE = True        # Auto-trade CRT signals (ON by default)
 CRT_TIMEFRAME = "4h"
 CRT_MAX_BODY_RATIO = 40.0  # Max body ratio % for quality filter
 
+# Enhanced Professional ICT Filters
+CRT_USE_ENHANCED_FILTERS = True    # Enable professional ICT filters
+                                   # Implements: meaningful liquidity, rejection wicks,
+                                   # displacement checks, weak close filtering
+
+# FILTER 9: Meaningful Liquidity (Candle Range Size)
+CRT_MIN_CANDLE_RANGE_PCT = 0.3     # Min range % (0.3% = 30 pips on $100)
+                                   # Filters tiny candles with no real liquidity
+                                   # Higher = stricter (fewer signals, better quality)
+                                   # Recommended: 0.3 - 0.5
+
+# FILTER 2 & 7: Strong Rejection Requirements
+CRT_MIN_REJECTION_WICK_PCT = 30.0  # Min rejection wick % of candle range
+                                   # Bullish: lower wick, Bearish: upper wick
+                                   # 30% = wick must be 30% of total candle
+                                   # Higher = requires stronger rejection
+                                   # Recommended: 25 - 40
+
+CRT_REQUIRE_WEAK_CLOSE_CHECK = True   # Check if close is decisive
+CRT_MIN_CLOSE_INSIDE_PCT = 20.0       # Close must be X% inside range
+                                      # Prevents barely-inside closes
+                                      # 20% = close at least 20% into range
+                                      # Recommended: 15 - 25
+
+# FILTER 3: Displacement After Sweep
+CRT_MAX_DISPLACEMENT_CANDLES = 2      # Candles to check after sweep
+CRT_MIN_DISPLACEMENT_RATIO = 1.5      # If following candles are 1.5x larger
+                                      # = strong displacement (continuation)
+                                      # Signal will be rejected
+                                      # Higher = allows more displacement
+                                      # Recommended: 1.5 - 2.0
+
+# How these filters work together:
+# 1. Range candle must be meaningful size (0.3%+)
+# 2. Sweep candle must have strong rejection wick (30%+)  
+# 3. Close must be decisive, not barely inside (20%+ into range)
+# 4. No strong displacement after sweep (continuation signal)
+# 5. HTF alignment still required (separate check)
+#
+# Result: Much higher quality CRT signals, fewer false positives
+
+
 # Higher Timeframe Alignment
 CRT_REQUIRE_HTF_ALIGNMENT = True
 CRT_HTF_TIMEFRAME = "1d"  # "1d" = Daily, "1w" = Weekly
@@ -127,7 +169,7 @@ CRT_HTF_LOOKBACK = 20
 CRT_MAX_SIGNAL_AGE_MINUTES = 245  # 4H + 5min buffer
 
 # Debug/Visualization
-CRT_INCLUDE_CHART_IN_TELEGRAM = True  # Include ASCII chart in Telegram alerts
+CRT_INCLUDE_CHART_IN_TELEGRAM = False  # Include ASCII chart in Telegram alerts
                                       # Shows candle details, sweep amounts
                                       # Helps verify pattern validity
                                       # Set to False to reduce message size
