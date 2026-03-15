@@ -144,9 +144,12 @@ class CRTStrategy(BaseStrategy):
             "HTF Trend": htf_bias.upper() if htf_bias else "NEUTRAL",
             # Add raw CRT data for chart generation
             "crt_pattern": crt,  # Store full CRT data for visualization
-            # Add quality metrics if available
+            # Quality metrics
             "Rejection Wick": f"{crt.get('rejection_wick_pct', 0):.1f}%",
-            "Close Inside": f"{crt.get('close_inside_pct', 0):.1f}%"
+            "Close Inside": f"{crt.get('close_inside_pct', 0):.1f}%",
+            # NEW: Liquidity quality
+            "Liquidity Type": crt.get('liquidity_quality', 'STANDARD'),
+            "ATR Filter": "Yes" if crt.get('atr_used', False) else "No"
         }
         
         signal = StrategySignal(
